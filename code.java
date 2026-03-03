@@ -1,50 +1,52 @@
 /*
- * WEEK_ 1 - LEVEL - 1 Practice Problems
- * 1. Find the age of Harry (birth year 2000, current year 2024)
- * 2. Find the area of a triangle in sq cm and sq inches given base and height in cm
- * 3. Convert 10.8 kilometers to miles
- * 4. Convert a distance in feet to yards and miles
+ * WEEK_ 1 , 2 - LEVEL - 2 Practice Problems
+ * 1. Create a basic calculator for addition, subtraction, multiplication, and division
+ * 2. Find the side of the square given its perimeter
+ * 3. Find the area of a triangle in sq inches and sq cm given base and height in cm
  */
+
+import java.util.Scanner;
 
 public class code {
 
     public static void main(String[] args) {
 
-        // ---- Problem 1: Age Calculator ----
-        System.out.println("Problem 1: Age Calculator");
-        int currentYear = 2024;
-        int birthYear = 2000;
-        int age = currentYear - birthYear;
-        System.out.println("Harry's age in 2024 is " + age);
+        Scanner scanner = new Scanner(System.in);
+
+        // ---- Problem 1: Basic Calculator ----
+        System.out.println("Problem 1: Basic Calculator");
+        System.out.print("Enter first number: ");
+        double number1 = scanner.nextDouble();
+        System.out.print("Enter second number: ");
+        double number2 = scanner.nextDouble();
+        double addition = number1 + number2;
+        double subtraction = number1 - number2;
+        double multiplication = number1 * number2;
+        double division = number1 / number2;
+        System.out.printf("The addition, subtraction, multiplication, and division value of 2 numbers %.2f and %.2f is %.2f, %.2f, %.2f, and %.2f%n",
+                          number1, number2, addition, subtraction, multiplication, division);
 
         System.out.println();
 
-        // ---- Problem 2: Area of a Triangle ----
-        System.out.println("Problem 2: Area of a Triangle");
-        double baseCm = 10.0;
-        double heightCm = 5.0;
-        double areaSqCm = 0.5 * baseCm * heightCm;
-        double areaSqInches = areaSqCm / 6.4516; // 1 sq inch = 6.4516 sq cm
-        System.out.printf("Base = %.1f cm, Height = %.1f cm%n", baseCm, heightCm);
-        System.out.printf("Area of triangle = %.2f sq cm%n", areaSqCm);
-        System.out.printf("Area of triangle = %.2f sq inches%n", areaSqInches);
+        // ---- Problem 2: Side of a Square from Perimeter ----
+        System.out.println("Problem 2: Side of a Square from Perimeter");
+        System.out.print("Enter perimeter of the square: ");
+        double perimeter = scanner.nextDouble();
+        double side = perimeter / 4.0;
+        System.out.printf("The length of the side is %.2f whose perimeter is %.2f%n", side, perimeter);
 
         System.out.println();
 
-        // ---- Problem 3: Kilometers to Miles ----
-        System.out.println("Problem 3: Kilometers to Miles");
-        double kilometers = 10.8;
-        double miles = kilometers / 1.60934; // 1 mile = 1.60934 km
-        System.out.printf("The distance %.1f km in miles is %.2f%n", kilometers, miles);
+        // ---- Problem 3: Area of a Triangle ----
+        System.out.println("Problem 3: Area of a Triangle");
+        System.out.print("Enter base of the triangle in cm: ");
+        double base = scanner.nextDouble();
+        System.out.print("Enter height of the triangle in cm: ");
+        double height = scanner.nextDouble();
+        double areaCm = 0.5 * base * height;
+        double areaIn = areaCm / (2.54 * 2.54);
+        System.out.printf("The Area of the triangle in sq in is %.2f and sq cm is %.2f%n", areaIn, areaCm);
 
-        System.out.println();
-
-        // ---- Problem 4: Feet to Yards and Miles ----
-        System.out.println("Problem 4: Feet to Yards and Miles");
-        double feet = 5280.0;
-        double yards = feet / 3.0;        // 1 yard = 3 feet
-        double milesFromFeet = feet / 5280.0; // 1 mile = 5280 feet
-        System.out.printf("%.1f feet = %.2f yards%n", feet, yards);
-        System.out.printf("%.1f feet = %.4f miles%n", feet, milesFromFeet);
+        scanner.close();
     }
 }
