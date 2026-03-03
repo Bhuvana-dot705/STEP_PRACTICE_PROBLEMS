@@ -1,8 +1,7 @@
 /*
- * WEEK_ 1 , 2 - LEVEL - 2 Practice Problems
- * 1. Create a basic calculator for addition, subtraction, multiplication, and division
- * 2. Find the side of the square given its perimeter
- * 3. Find the area of a triangle in sq inches and sq cm given base and height in cm
+ * WEEK_ 1 , 2 - LEVEL - 3 Practice Problems
+ * 1. Temperature Conversion: Celsius to Fahrenheit
+ * 2. Temperature Conversion: Fahrenheit to Celsius
  */
 
 import java.util.Scanner;
@@ -13,39 +12,21 @@ public class code {
 
         Scanner scanner = new Scanner(System.in);
 
-        // ---- Problem 1: Basic Calculator ----
-        System.out.println("Problem 1: Basic Calculator");
-        System.out.print("Enter first number: ");
-        double number1 = scanner.nextDouble();
-        System.out.print("Enter second number: ");
-        double number2 = scanner.nextDouble();
-        double addition = number1 + number2;
-        double subtraction = number1 - number2;
-        double multiplication = number1 * number2;
-        double division = number1 / number2;
-        System.out.printf("The addition, subtraction, multiplication, and division value of 2 numbers %.2f and %.2f is %.2f, %.2f, %.2f, and %.2f%n",
-                          number1, number2, addition, subtraction, multiplication, division);
+        // ---- Problem 1: Celsius to Fahrenheit ----
+        System.out.println("Problem 1: Celsius to Fahrenheit");
+        System.out.print("Enter temperature in Celsius: ");
+        double celsius = scanner.nextDouble();
+        double fahrenheit = (celsius * 9 / 5) + 32;
+        System.out.printf("Temperature in Fahrenheit: %.2f%n", fahrenheit);
 
         System.out.println();
 
-        // ---- Problem 2: Side of a Square from Perimeter ----
-        System.out.println("Problem 2: Side of a Square from Perimeter");
-        System.out.print("Enter perimeter of the square: ");
-        double perimeter = scanner.nextDouble();
-        double side = perimeter / 4.0;
-        System.out.printf("The length of the side is %.2f whose perimeter is %.2f%n", side, perimeter);
-
-        System.out.println();
-
-        // ---- Problem 3: Area of a Triangle ----
-        System.out.println("Problem 3: Area of a Triangle");
-        System.out.print("Enter base of the triangle in cm: ");
-        double base = scanner.nextDouble();
-        System.out.print("Enter height of the triangle in cm: ");
-        double height = scanner.nextDouble();
-        double areaCm = 0.5 * base * height;
-        double areaIn = areaCm / (2.54 * 2.54);
-        System.out.printf("The Area of the triangle in sq in is %.2f and sq cm is %.2f%n", areaIn, areaCm);
+        // ---- Problem 2: Fahrenheit to Celsius ----
+        System.out.println("Problem 2: Fahrenheit to Celsius");
+        System.out.print("Enter temperature in Fahrenheit: ");
+        double fahrenheitInput = scanner.nextDouble();
+        double celsiusResult = (fahrenheitInput - 32) * 5 / 9;
+        System.out.printf("Temperature in Celsius: %.2f%n", celsiusResult);
 
         scanner.close();
     }
