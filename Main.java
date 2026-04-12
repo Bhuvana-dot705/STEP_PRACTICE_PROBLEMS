@@ -1,109 +1,88 @@
 /*
- * LEVEL 1 Practice Problems
+ * LEVEL 2 Practice Problems
  *
- * 1. Calculate Simple Interest
- * 2. Calculate Maximum Handshakes
- * 3. Calculate Athlete Rounds in Triangular Park
- * 4. Check whether number is Positive, Negative or Zero
+ * 1. Find factors of a number, store in array and compute:
+ *    sum, product, sum of squares
+ * 2. Sum of n natural numbers using recursion and formula
+ * 3. Check whether a year is a Leap Year
  */
-
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // =====================================================
-        // QUESTION 1: Simple Interest
-        // =====================================================
-        System.out.print("Enter Principal: ");
-        double principal = sc.nextDouble();
-
-        System.out.print("Enter Rate: ");
-        double rate = sc.nextDouble();
-
-        System.out.print("Enter Time: ");
-        double time = sc.nextDouble();
-
-        double si = calculateSI(principal, rate, time);
-
-        System.out.println("The Simple Interest is " + si +
-                " for Principal " + principal +
-                ", Rate of Interest " + rate +
-                " and Time " + time);
-
-
-        // =====================================================
-        // QUESTION 2: Maximum Handshakes
-        // =====================================================
-        System.out.print("\nEnter number of students: ");
-        int n = sc.nextInt();
-
-        int handshakes = calculateHandshakes(n);
-
-        System.out.println("Maximum number of handshakes: " + handshakes);
-
-
-        // =====================================================
-        // QUESTION 3: Athlete Rounds
-        // =====================================================
-        System.out.print("\nEnter side 1: ");
-        double a = sc.nextDouble();
-
-        System.out.print("Enter side 2: ");
-        double b = sc.nextDouble();
-
-        System.out.print("Enter side 3: ");
-        double c = sc.nextDouble();
-
-        double rounds = calculateRounds(a, b, c);
-
-        System.out.println("Number of rounds to complete 5 km: " + rounds);
-
-
-        // =====================================================
-        // QUESTION 4: Number Check
-        // =====================================================
-        System.out.print("\nEnter a number: ");
+        // ===== 1. Factors =====
+        System.out.print("Enter number: ");
         int num = sc.nextInt();
 
-        int result = checkNumber(num);
+        int[] factors = findFactors(num);
 
-        if (result == 1) {
-            System.out.println("Positive Number");
-        } else if (result == -1) {
-            System.out.println("Negative Number");
-        } else {
-            System.out.println("Zero");
+        int sum = 0;
+        long product = 1;
+        double sumSq = 0;
+
+        System.out.print("Factors: ");
+        for (int f : factors) {
+            System.out.print(f + " ");
+            sum += f;
+            product *= f;
+            sumSq += Math.pow(f, 2);
         }
+
+        System.out.println("\nSum: " + sum);
+        System.out.println("Product: " + product);
+        System.out.println("Sum of Squares: " + sumSq);
+
+
+        // ===== 2. Sum of n =====
+        System.out.print("\nEnter n: ");
+        int n = sc.nextInt();
+
+        if (n > 0) {
+            int r1 = recSum(n);
+            int r2 = n * (n + 1) / 2;
+
+            System.out.println("Recursion: " + r1);
+            System.out.println("Formula: " + r2);
+        }
+
+
+        // ===== 3. Leap Year =====
+        System.out.print("\nEnter year: ");
+        int year = sc.nextInt();
+
+        if (year >= 1582 && isLeap(year))
+            System.out.println("Leap Year");
+        else
+            System.out.println("Not Leap Year");
 
         sc.close();
     }
 
-    // Method for Simple Interest
-    public static double calculateSI(double p, double r, double t) {
-        return (p * r * t) / 100;
+    // Find factors
+    static int[] findFactors(int n) {
+        int count = 0;
+        for (int i = 1; i <= n; i++)
+            if (n % i == 0) count++;
+
+        int[] arr = new int[count];
+        int j = 0;
+
+        for (int i = 1; i <= n; i++)
+            if (n % i == 0) arr[j++] = i;
+
+        return arr;
     }
 
-    // Method for Handshakes
-    public static int calculateHandshakes(int n) {
-        return (n * (n - 1)) / 2;
+    // Recursive sum
+    static int recSum(int n) {
+        if (n == 1) return 1;
+        return n + recSum(n - 1);
     }
 
-    // Method for Athlete Rounds
-    public static double calculateRounds(double a, double b, double c) {
-        double perimeter = a + b + c;
-        double distance = 5000; // 5 km in meters
-        return distance / perimeter;
-    }
-
-    // Method for Number Check
-    public static int checkNumber(int num) {
-        if (num > 0)
-            return 1;
-        else if (num < 0)
-            return -1;
-        else
-            return 0;
+    // Leap year
+    static boolean isLeap(int y) {
+        return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
     }
 }
